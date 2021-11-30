@@ -14,7 +14,8 @@ RUN apk add --no-cache --update \
     zlib-dev \
     readline-dev \
     sqlite-dev \
-    build-base
+    build-base \
+    wget
 
 # Set Python version
 ARG PYTHON_VERSION='3.7.0'
@@ -40,7 +41,7 @@ ENV MODE=$mode
 # install dependencies
 COPY requirements.txt .
 RUN apk add py3-setuptools
-RUN apk update && apk add python3-dev gcc libc-dev make  postgresql-dev musl-dev postgresql-libs
+RUN apk update && apk add python3-dev gcc libc-dev make  postgresql-dev musl-dev postgresql-libs bash 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install --upgrade pip && pyenv rehash
