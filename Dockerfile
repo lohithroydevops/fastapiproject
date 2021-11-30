@@ -35,7 +35,7 @@ WORKDIR /app
 ARG mode
 
 # set env variables
-ENV MODE = $mode
+ENV MODE=$mode
 
 # install dependencies
 COPY requirements.txt .
@@ -52,4 +52,3 @@ COPY . .
 
 CMD uvicorn main:app --host 0.0.0.0 --port 8000
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
-
