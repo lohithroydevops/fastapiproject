@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  app:
+    container_name: server
+    image: demo/server
+    network_mode: bridge
+    command: uvicorn main:app --host 0.0.0.0 --reload --port 8000
+    environment:
+      - LOG_LEVEL=debug
+      - PGHOST=postgresdb
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    links:
+      - "db"
+
+  db:
+    container_name: db
+    image: postgres:13-alpine3.14
+    hostname: postgresdb
+    network_mode: bridge 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=demo
+
+volumes:
+  postgres_data:
