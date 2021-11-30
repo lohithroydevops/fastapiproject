@@ -26,8 +26,8 @@ else:
 
 
 from sqlalchemy import Column, Integer, String  # type: ignore
-
 from sqlalchemy.orm import relationship
+
 
 class ItemDict(TypedDict):
     name: str
@@ -55,50 +55,26 @@ class Item(Base):
         """
         return {"name": self.name}
 
-
 from typing import List
-
 from sqlalchemy.orm import Session  # type: ignore
-
-
-
-def get_item_by_name(session: Session, name: str) -> Item:
-    return session.query(Item).filter(Item.name == name).first()
-
-
-
-def get_items(session: Session, skip: int = 0, limit: int = 100) -> List[Item]:
-    return session.query(Item).offset(skip).limit(limit).all()
-
-
-def post_item(session: Session, name: str) -> Item:
-    n=Item(name=name)
+def post_item(session: Session, store_name: str) -> Item:
+    n=Item(name=store_name)
     session.add(n)
     session.commit()
 
-
-
-
-
-from pydantic import BaseModel
-
-
-
-
+from pydantic import BaseModel, Field
 class ItemBase(BaseModel):
-    name: str
+    name: str = Field(alias="store_name")
+
+    class Config:
+        allow_population_by_field_name = True
     
-
-
 from typing import List
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session  # type: ignore
 
-
 Base.metadata.create_all(bind=engine)
 itemrouter = APIRouter()
-
 
 def get_session():
     session = SessionLocal()
@@ -107,32 +83,16 @@ def get_session():
     finally:
         session.close()
 
-
-@itemrouter.get("/store/", response_model=List[ItemBase])
-def read_items(
-    skip: int = 0, limit: int = 100, session: Session = Depends(get_session)
-):
-    items = get_items(session=session, skip=skip, limit=limit)
-    return [i.serialize for i in items]
-
-
-@itemrouter.get("/store/{name}", response_model=ItemBase)
-def read_item(name: str, session: Session = Depends(get_session)):
-    item = get_item_by_name(session=session, name=name)
-    if item is None:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return item.serialize
-
-
-@itemrouter.post("/store/{name}", response_model=ItemBase)
-def post_fs_item(name: str, session: Session = Depends(get_session)):
-    psitem = post_item(session=session, name=name)
-
-
+@itemrouter.post("/store/", response_model=ItemBase)
+def post_fs_item(store_name: str, session: Session = Depends(get_session)):
+    psitem = post_item(session=session, store_name=store_name)
 
 from fastapi import FastAPI
 
 app = FastAPI()
 app.include_router(itemrouter)
 
+import os
 
+if(os.environ['LOG_LEVEL'] == 'debug'):
+    print(os.environ['MODE'])
