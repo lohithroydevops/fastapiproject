@@ -51,9 +51,12 @@
 ## How to Run <a name="howtorun"></a>
 
 Imaage Creation
- docker build --build-arg mode=dev . -t demo/server
+
+docker build --build-arg mode=dev . -t demo/server
  
  Verify images
+ 
+ 
  docker images
  
  REPOSITORY    TAG             IMAGE ID       CREATED             SIZE
@@ -61,6 +64,8 @@ Imaage Creation
 
 
 docker compose up -d
+
+
 [+] Running 2/2
  - Container db      Running                                                                      0.0s
  - Container server  Started                                                                      2.8s
@@ -69,6 +74,9 @@ docker compose up -d
 
  
 docker compose logs
+
+
+
 db  |               
 db  | PostgreSQL Database directory appears to contain a database; Skipping initialization
 db  |
@@ -95,7 +103,12 @@ server  | INFO:     127.0.0.1:59438 - "POST /store/ HTTP/1.1" 200 OK
 
 docker exec -it server /bin/bash
 
+
+
+
 bash-5.1# ./create-database-and-tables.sh
+
+
 BEGIN
 CREATE SCHEMA
 CREATE TABLE
@@ -107,6 +120,8 @@ bash-5.1#
 we can verify uvicorn is running with reload
 
 bash-5.1# ps -ef
+
+
 PID   USER     TIME  COMMAND
     1 root      0:45 {uvicorn} /root/.pyenv/versions/3.7.0/bin/python3.7 /root/.pyenv/versions/3.7.0/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
