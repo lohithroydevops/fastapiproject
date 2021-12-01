@@ -12,7 +12,9 @@
 4. [How to Run](#howtorun)
 
 ## Introduction <a name="introduction"></a>
-                  In this project based on requirements provided created containerized application with python server and postgresql db as backend by using docker and docker-compose, used fastapi web framework for  building api with python 3.7 and used uvicorn as the server.
+                  In this project based on requirements provided created containerized application
+                  with python server and postgresql db as backend by using docker and docker-compose, 
+                  used fastapi web framework for  building api with python 3.7 and used uvicorn as the server.
 
 ## Required softwares <a name="requirements"></a>
 text
