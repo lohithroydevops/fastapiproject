@@ -16,11 +16,14 @@
                   used fastapi web framework for  building api with python 3.7 and used uvicorn as the server.
 
 ## Required softwares <a name="requirements"></a>
-text
+
     1. Python3
     2. FastAPI
     3. Postgres
     4. Docker
+    
+    
+    
  Created  Dockerfile to create image with python 3.7 with environment MODE set with
  build argument mode=dev
  Used psql postgres13 base image and installed python3.7 and google cloud sdk with RUN
