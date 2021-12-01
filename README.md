@@ -28,14 +28,20 @@
  build argument mode=dev
  Used psql postgres13 base image and installed python3.7 and google cloud sdk with RUN
  Created requirements.txt file to include  fastapi, uvicorn and other dependencies like pydantic, sqlalchemy
+ 
+ 
  Used docker compose to bring up running application instance as container
  linking with postgresql13 database container configured postgres DB with provided
  username and password, make the db container accessible with links and hostname 
  over the custom docker bridge network and configured app to start with requirement specified
  uvicorn main:app --reload.
+ 
+ 
  Created shell script and included it in the image, script is used to connect to postgresdb instance
  and create store table  under demo_user schema with auto increment id column
  and name column.
+ 
+ 
  Created main.py by importing several modules, created base class, post functions
  and get functions using routes with help of Fastapi and APIrouter, used pydantic 
  Field alias to map name and store_name field.
