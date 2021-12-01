@@ -50,7 +50,7 @@
  
 ## How to Run <a name="howtorun"></a>
 
-Imaage Creation
+Image Creation
 
 docker build --build-arg mode=dev . -t demo/server
  
