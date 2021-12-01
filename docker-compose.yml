@@ -2,6 +2,9 @@ version: '3.3'
 services:
   app:
     container_name: server
+    build:
+      context: ./
+      dockerfile: Dockerfile
     image: demo/server
     networks:
       - cu-network
