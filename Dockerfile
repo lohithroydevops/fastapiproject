@@ -1,10 +1,9 @@
 FROM postgres:13-alpine3.14
 ENV POSTGRES_USER demo_user 
-ENV POSTGRES_PASSWORD password123
+ENV PGPASSWORD password123
 ENV POSTGRES_DB demo
 
 RUN apk add linux-headers 
-
 RUN apk add --no-cache --update \
     git \
     bash \
@@ -16,7 +15,6 @@ RUN apk add --no-cache --update \
     sqlite-dev \
     build-base \
     wget
-
 # Set Python version
 ARG PYTHON_VERSION='3.7.0'
 # Set pyenv home
@@ -41,7 +39,7 @@ ENV MODE=$mode
 # install dependencies
 COPY requirements.txt .
 RUN apk add py3-setuptools
-RUN apk update && apk add python3-dev gcc libc-dev make  postgresql-dev musl-dev postgresql-libs bash 
+RUN apk update && apk add python3-dev gcc libc-dev make curl postgresql-dev musl-dev postgresql-libs bash
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install --upgrade pip && pyenv rehash
@@ -51,5 +49,4 @@ ENV PATH $PATH:/root/google-cloud-sdk/bin
 # copy project
 COPY . .
 
-CMD uvicorn main:app --host 0.0.0.0 --port 8000
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
