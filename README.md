@@ -7,16 +7,12 @@
 
 # Table of contents
 1. [Introduction](#introduction)
-   In this project based on requirements provided created containerized application with python server and 
-   postgresql db as backend by using docker and docker-compose, used fastapi web framework for 
-   building api with python 3.7 and used uvicorn as the server.
 2. [Requirements](#requirements)
 1) Created  Dockerfile to create image with python 3.7,
 4. [How to Run](#howtorun)
 
 ## Introduction <a name="introduction"></a>
-    This project is created for demo purpose.
-
+                  In this project based on requirements provided created containerized application with python server and postgresql db as backend by using docker and docker-compose, used fastapi web framework for  building api with python 3.7 and used uvicorn as the server.
 
 ## Required softwares <a name="requirements"></a>
 text
