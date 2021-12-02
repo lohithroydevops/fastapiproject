@@ -1,9 +1,13 @@
 
 ### Task Overview
 
-This task is based on requirements provided to create containerized application with python uvicorn server and postgresql db as backend leveraging docker, docker-compose, and fastapi web framework for building api with python v.3.7.
+ This task is based on requirements provided to create containerized application with python uvicorn server and postgresql as backend leveraging docker, docker-compose, and    fastapi web framework for building api with python v.3.7.
 
-
+ Used psql postgres13 base image and installed python3.7,google cloud sdk and included  fastapi, uvicorn and other dependencies.
+ Created shell script and included it in the image, script is used to connect to postgresdb instance and create store table  under demo_user schema with auto increment id column
+ and name column.
+ Created main.py by importing several modules, created base class, post functions and get functions using routes with help of Fastapi and APIrouter, used pydantic 
+ Field alias to map name and store_name field.
 ## Contents
 
 * [Tools/Technologies Used](#tools-/-technologies-used)
