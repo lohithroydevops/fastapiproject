@@ -1,6 +1,7 @@
 FROM postgres:13-alpine3.14
 ENV POSTGRES_USER demo_user 
 ENV PGPASSWORD password123
+ENV POSTGRES_PASSWORD=password123
 ENV POSTGRES_DB demo
 
 RUN apk add linux-headers 
@@ -49,4 +50,7 @@ ENV PATH $PATH:/root/google-cloud-sdk/bin
 # copy project
 COPY . .
 
-CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+RUN exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+
+# Execute Permissions to the python Script
+RUN chmod +x create-database-and-tables.sh
