@@ -98,6 +98,32 @@ Data in DB
 - Can automate the whole process using Jenkins/GitLab pipeline.
 - Modify README concisely.
 
+- Tried Testcases as well below is the code used it with pytest, test at image level is bit tricky but i'm able to pull it of with 
+- 
+-
+ 
+import json
+
+from fastapi.testclient import TestClient
+
+from main import app
+
+client = TestClient(app)
+
+
+def test_insert_item():
+    item_obj = {
+        "store_nam": "random item"
+    }
+
+    response = client.post("/store/",
+                           data=json.dumps(item_obj)
+                           )
+
+    assert response.json() == item_obj
+    assert response.status_code == 200
+    
+
 ## Contact:
 - Developed by **Lohith Roy Peddenti**
 - E-Mail: lohithroydevops@gmail.com
