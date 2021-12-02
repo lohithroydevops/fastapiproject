@@ -65,8 +65,14 @@ Curl Tests
 curl -X 'POST'  'http://localhost:8000/store/' -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "store_name": "hhghjl"
+  "store_name": "marketdial"
 }'
+
+
+<img width="956" alt="Screenshot 2021-12-01 194421" src="https://user-images.githubusercontent.com/95010251/144348563-922842f8-7a47-439c-8eda-87294c7686c7.png">
+
+
+
 
 >  * Case 2:
 
@@ -74,6 +80,18 @@ curl -X 'POST'  'http://localhost:8000/store/' -H 'accept: application/json' \
   "store_name": "test_store"
 }'
 {"store_name":"test_store"}
+
+
+
+<img width="971" alt="teststore" src="https://user-images.githubusercontent.com/95010251/144348652-04af740f-5e8e-4c51-9858-a34f92b06bf1.png">
+
+
+
+
+Data in DB
+
+<img width="922" alt="dbresponse" src="https://user-images.githubusercontent.com/95010251/144348595-37f44936-e076-43aa-bc7b-98d6ce9439f3.png">
+
 
 
 ## Room for Improvement:
