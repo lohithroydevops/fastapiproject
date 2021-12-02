@@ -98,9 +98,8 @@ Data in DB
 - Can automate the whole process using Jenkins/GitLab pipeline.
 - Modify README concisely.
 
-- Tried Testcases as well below is the code used it with pytest, test at image level is bit tricky but i'm able to pull it of with 
-- 
--
+- Tried Testcases as well below is the code used it with pytest, test at image level is bit tricky but i'm able to test it by brining up new test container and test it with compose file with depends_on tag
+
  
 import json
 
