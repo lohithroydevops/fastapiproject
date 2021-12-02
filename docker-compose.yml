@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: demo/server
     networks:
-      - cu-network
+      - fastapiproject_cu-network
     command:  uvicorn main:app --reload --host 0.0.0.0  --port 8000
     environment:
       - LOG_LEVEL=debug
@@ -25,7 +25,7 @@ services:
     image: postgres:13-alpine3.14
     hostname: postgresdb
     networks:
-      - cu-network
+      - fastapiproject_cu-network
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     expose:
@@ -33,15 +33,12 @@ services:
     environment:
       - POSTGRES_USER=demo_user
       - PGPASSWORD=password123
+      - POSTGRES_PASSWORD=password123
       - POSTGRES_DB=demo
 
 volumes:
   postgres_data:
 
 networks:
-  cu-network:
+  fastapiproject_cu-network:
       driver: bridge
-
-
-
-
