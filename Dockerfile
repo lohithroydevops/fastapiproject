@@ -50,7 +50,7 @@ ENV PATH $PATH:/root/google-cloud-sdk/bin
 # copy project
 COPY . .
 
-RUN exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
 
 # Execute Permissions to the python Script
 RUN chmod +x create-database-and-tables.sh
